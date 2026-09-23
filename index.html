@@ -1,32 +1,1505 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DesiTok – Bharat ka Apna Short Video Platform</title>
-    <meta name="description" content="DesiTok – Bharat ka Apna Short Video Platform. Watch, create, and share trending short vertical videos, dance, comedy, and viral reels across India." />
-    <meta property="og:title" content="DesiTok – Bharat ka Apna Short Video Platform" />
-    <meta property="og:description" content="DesiTok – Bharat ka Apna Short Video Platform. Watch, create, and share trending short vertical videos, dance, comedy, and viral reels across India." />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="DesiTok" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="DesiTok – Bharat ka Apna Short Video Platform" />
-    <meta name="twitter:description" content="DesiTok – Bharat ka Apna Short Video Platform. Watch, create, and share trending short vertical videos, dance, comedy, and viral reels across India." />
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "DesiTok",
-      "alternateName": "Bharat ka Apna Short Video Platform",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "description": "Bharat ka Apna Short Video Platform to watch, create, and upload short vertical videos and reels."
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DesiTok - Indian Reels & Short Videos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom App Styling & Animations */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.35); }
+            100% { transform: scale(1); }
+        }
+        .heart-pop { animation: heartPulse 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spin-vinyl { animation: spinSlow 5s linear infinite; }
+
+        @keyframes floatGiftUp {
+            0% { transform: translateY(80px) scale(0.6); opacity: 0; }
+            20% { opacity: 1; transform: translateY(0px) scale(1.15); }
+            75% { opacity: 1; transform: translateY(-70px) scale(1.05); }
+            100% { opacity: 0; transform: translateY(-160px) scale(0.9); }
+        }
+        .gift-float-anim { animation: floatGiftUp 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    </style>
+</head>
+<body class="bg-black text-white h-screen w-screen flex flex-col justify-between overflow-hidden select-none font-sans">
+
+    <!-- Top App Header -->
+    <header class="absolute top-0 left-0 w-full z-20 flex justify-between items-center px-4 py-3 bg-gradient-to-b from-black/90 via-black/40 to-transparent">
+        <div class="flex items-center gap-2">
+            <h1 class="text-xl font-black tracking-wider text-rose-500 flex items-center gap-1.5 cursor-pointer" onclick="scrollToTop()">
+                <span>DesiTok</span>
+                <span class="text-base">🇮🇳</span>
+            </h1>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 hidden sm:inline-block">
+                Bharat Ka Reels
+            </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <!-- Coin Wallet Pill -->
+            <button onclick="openWalletModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-xs font-bold transition-all shadow-md active:scale-95">
+                <span>🪙</span>
+                <span id="headerCoinBalance" class="font-mono text-[11px]">250</span>
+            </button>
+
+            <!-- Upload Reel Button -->
+            <button onclick="openUploadModal()" class="bg-rose-600 hover:bg-rose-500 active:scale-95 transition-all text-white px-3.5 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-rose-600/30 flex items-center gap-1.5">
+                <i class="fa-solid fa-plus text-[10px]"></i>
+                <span>Upload</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Vertical Reels Feed -->
+    <main id="feed" class="flex-1 w-full h-full relative overflow-y-scroll snap-y snap-mandatory flex flex-col items-center no-scrollbar">
+        
+        <!-- Reel 1: @bhim_shankar -->
+        <div class="reel-container w-full h-full snap-start snap-always relative flex-shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden" data-reel-id="1">
+            <video class="reel-video w-full h-full object-cover cursor-pointer" autoplay loop muted playsinline onclick="toggleVideo(this)">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-lights-41642-large.mp4" type="video/mp4">
+            </video>
+
+            <!-- Video Info Overlay -->
+            <div class="absolute bottom-20 left-4 right-20 z-10 pointer-events-none drop-shadow-md">
+                <div class="flex items-center gap-2 pointer-events-auto">
+                    <h3 class="font-bold text-base text-white">@bhim_shankar</h3>
+                    <i class="fa-solid fa-circle-check text-rose-500 text-xs"></i>
+                    <button onclick="toggleFollow(this)" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-600 hover:bg-rose-500 text-white transition-colors">
+                        Follow
+                    </button>
+                </div>
+                <p class="text-xs text-gray-200 mt-1 pointer-events-auto leading-relaxed">
+                    Welcome to DesiTok! India's own short video platform. 🚀 <span class="text-rose-400 font-semibold">#DesiTok #India #Reels</span>
+                </p>
+                <div class="flex items-center gap-2 mt-2 text-[11px] text-neutral-300 pointer-events-auto">
+                    <i class="fa-solid fa-music text-[10px] text-rose-400"></i>
+                    <span class="truncate max-w-[200px]">Desi Dhadkan (Official Anthem) • DesiTok Records</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons Sidebar -->
+            <div class="absolute right-3.5 bottom-24 z-10 flex flex-col items-center space-y-3.5">
+                <!-- Like -->
+                <button class="flex flex-col items-center text-white group" onclick="toggleLike(this, 'like-1', 15200)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart text-xl text-white transition-colors"></i>
+                    </div>
+                    <span id="like-1" class="text-[11px] mt-1 font-bold">15.2K</span>
+                </button>
+
+                <!-- Comments -->
+                <button class="flex flex-col items-center text-white group" onclick="openComments('@bhim_shankar', 840)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-comment-dots text-xl text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">840</span>
+                </button>
+
+                <!-- Virtual Gift Button -->
+                <button class="flex flex-col items-center text-amber-300 group" onclick="openGiftSheet('@bhim_shankar')">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500/30 via-orange-500/25 to-rose-500/30 backdrop-blur-md flex items-center justify-center border border-amber-400/50 group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/20">
+                        <i class="fa-solid fa-gift text-xl text-amber-300"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold text-amber-300">Gift</span>
+                </button>
+
+                <!-- Share -->
+                <button class="flex flex-col items-center text-white group" onclick="shareReel('@bhim_shankar')">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-share text-lg text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">Share</span>
+                </button>
+
+                <!-- Spinning Vinyl Music -->
+                <div class="w-10 h-10 rounded-full bg-neutral-900 border-2 border-neutral-700 flex items-center justify-center spin-vinyl p-0.5 mt-1">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=80&q=80" alt="Audio track" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <!-- Reel 2: @creator_hub -->
+        <div class="reel-container w-full h-full snap-start snap-always relative flex-shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden" data-reel-id="2">
+            <video class="reel-video w-full h-full object-cover cursor-pointer" loop muted playsinline onclick="toggleVideo(this)">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-tree-branches-in-the-breeze-1186-large.mp4" type="video/mp4">
+            </video>
+
+            <div class="absolute bottom-20 left-4 right-20 z-10 pointer-events-none drop-shadow-md">
+                <div class="flex items-center gap-2 pointer-events-auto">
+                    <h3 class="font-bold text-base text-white">@creator_hub</h3>
+                    <i class="fa-solid fa-circle-check text-rose-500 text-xs"></i>
+                    <button onclick="toggleFollow(this)" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 text-neutral-300 transition-colors">
+                        Following
+                    </button>
+                </div>
+                <p class="text-xs text-gray-200 mt-1 pointer-events-auto leading-relaxed">
+                    Beautiful nature vibe across Incredible India 🌳✨ <span class="text-rose-400 font-semibold">#Nature #Vibes</span>
+                </p>
+                <div class="flex items-center gap-2 mt-2 text-[11px] text-neutral-300 pointer-events-auto">
+                    <i class="fa-solid fa-music text-[10px] text-rose-400"></i>
+                    <span class="truncate max-w-[200px]">Whispering Winds • Nature Soundscapes</span>
+                </div>
+            </div>
+
+            <div class="absolute right-3.5 bottom-24 z-10 flex flex-col items-center space-y-3.5">
+                <button class="flex flex-col items-center text-white group" onclick="toggleLike(this, 'like-2', 9400)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart text-xl text-rose-500"></i>
+                    </div>
+                    <span id="like-2" class="text-[11px] mt-1 font-bold">9.4K</span>
+                </button>
+
+                <button class="flex flex-col items-center text-white group" onclick="openComments('@creator_hub', 310)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-comment-dots text-xl text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">310</span>
+                </button>
+
+                <button class="flex flex-col items-center text-amber-300 group" onclick="openGiftSheet('@creator_hub')">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500/30 via-orange-500/25 to-rose-500/30 backdrop-blur-md flex items-center justify-center border border-amber-400/50 group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/20">
+                        <i class="fa-solid fa-gift text-xl text-amber-300"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold text-amber-300">Gift</span>
+                </button>
+
+                <button class="flex flex-col items-center text-white group" onclick="shareReel('@creator_hub')">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-share text-lg text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">Share</span>
+                </button>
+
+                <div class="w-10 h-10 rounded-full bg-neutral-900 border-2 border-neutral-700 flex items-center justify-center spin-vinyl p-0.5 mt-1">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=80&q=80" alt="Audio track" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="absolute bottom-0 left-0 w-full bg-black/95 backdrop-blur-md border-t border-zinc-800 flex justify-around items-center py-2.5 z-20">
+        <a href="#" onclick="scrollToTop(); return false;" class="text-rose-500 flex flex-col items-center">
+            <i class="fa-solid fa-house text-lg"></i>
+            <span class="text-[10px] mt-1 font-bold">Home</span>
+        </a>
+        <a href="#" onclick="showToast('Discovering viral reels across India 🇮🇳'); return false;" class="text-gray-400 hover:text-white flex flex-col items-center transition-colors">
+            <i class="fa-solid fa-compass text-lg"></i>
+            <span class="text-[10px] mt-1 font-medium">Discover</span>
+        </a>
+        <a href="#" onclick="openUploadModal(); return false;" class="text-rose-500 hover:scale-110 flex flex-col items-center transition-transform">
+            <i class="fa-solid fa-circle-plus text-3xl"></i>
+        </a>
+        <a href="#" onclick="openStudioModal(); return false;" class="text-gray-400 hover:text-amber-400 flex flex-col items-center transition-colors relative">
+            <i class="fa-solid fa-chart-line text-lg"></i>
+            <span class="text-[10px] mt-1 font-medium">Studio</span>
+            <span class="absolute -top-1 -right-1 px-1 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-[8px] font-black text-white leading-none">
+                PRO
+            </span>
+        </a>
+        <a href="#" onclick="showToast('Profile: @bhim_shankar • 15.2K Likes'); return false;" class="text-gray-400 hover:text-white flex flex-col items-center transition-colors">
+            <i class="fa-solid fa-user text-lg"></i>
+            <span class="text-[10px] mt-1 font-medium">Profile</span>
+        </a>
+    </nav>
+
+    <!-- Toast Banner -->
+    <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-neutral-900/95 border border-rose-500/40 text-rose-300 text-xs font-semibold shadow-2xl backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200">
+        Message
+    </div>
+
+    <!-- Floating Gift Animation Overlay -->
+    <div id="giftAnimationOverlay" class="fixed inset-0 z-50 pointer-events-none flex flex-col items-center justify-center opacity-0 transition-opacity">
+        <div id="giftAnimBox" class="flex flex-col items-center">
+            <div id="giftAnimEmoji" class="text-7xl drop-shadow-[0_10px_20px_rgba(245,158,11,0.5)]">🎁</div>
+            <div id="giftAnimTitle" class="mt-2 text-xl font-black text-amber-300 drop-shadow">Taj Mahal Crown!</div>
+            <div id="giftAnimSender" class="text-xs text-white/90 font-semibold bg-black/60 px-3 py-1 rounded-full mt-1 border border-white/20">
+                You sent a gift to @creator
+            </div>
+        </div>
+    </div>
+
+    <!-- Comments Sheet Modal -->
+    <div id="commentsModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 flex flex-col justify-end">
+        <div class="bg-neutral-900 border-t border-neutral-800 rounded-t-3xl p-5 max-w-lg mx-auto w-full max-h-[65vh] flex flex-col shadow-2xl">
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
+                <h4 id="commentsTitle" class="text-sm font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-rose-500"></i>
+                    <span>Comments</span>
+                </h4>
+                <button onclick="closeComments()" class="text-neutral-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div id="commentsList" class="flex-1 overflow-y-auto py-3 space-y-3.5 text-xs no-scrollbar">
+                <div class="flex items-start gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-rose-600/30 text-rose-400 font-bold flex items-center justify-center text-xs">A</div>
+                    <div>
+                        <span class="font-bold text-white">@aarav_patel</span>
+                        <p class="text-neutral-300 mt-0.5">Proud to see Indian apps rocking this quality! Jai Hind 🇮🇳🔥</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-amber-600/30 text-amber-400 font-bold flex items-center justify-center text-xs">R</div>
+                    <div>
+                        <span class="font-bold text-white">@rohit_v</span>
+                        <p class="text-neutral-300 mt-0.5">Brilliant video quality and smooth playback! Keep going.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-neutral-800 flex gap-2">
+                <input id="commentInput" type="text" placeholder="Add a comment on this reel..." class="flex-1 bg-neutral-950 border border-neutral-800 rounded-full px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-rose-500" />
+                <button onclick="postComment()" class="px-5 py-2.5 rounded-full bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white">
+                    Post
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Gift Sheet Modal -->
+    <div id="giftSheetModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 flex flex-col justify-end">
+        <div class="bg-neutral-900 border-t border-amber-500/30 rounded-t-3xl p-5 max-w-lg mx-auto w-full flex flex-col shadow-2xl">
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
+                <div>
+                    <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                        <span>🎁 Send Virtual Gift to</span>
+                        <span id="giftTargetCreator" class="text-rose-400">@creator</span>
+                    </h4>
+                    <p class="text-[11px] text-neutral-400">Coins convert to real ₹ INR creator earnings (₹100 = 100 Coins)</p>
+                </div>
+                <button onclick="closeGiftSheet()" class="text-neutral-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Gift Grid -->
+            <div class="grid grid-cols-4 gap-2.5 py-4">
+                <button onclick="sendGift('Kadak Chai', '☕', 20)" class="p-2.5 rounded-2xl bg-neutral-800/80 hover:bg-neutral-700/80 border border-neutral-700 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Chai</span>
+                    <span class="text-[10px] text-amber-400 font-bold">20 🪙</span>
+                </button>
+                <button onclick="sendGift('Dil Se', '❤️', 50)" class="p-2.5 rounded-2xl bg-neutral-800/80 hover:bg-neutral-700/80 border border-neutral-700 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">❤️</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Dil Se</span>
+                    <span class="text-[10px] text-amber-400 font-bold">50 🪙</span>
+                </button>
+                <button onclick="sendGift('Taj Crown', '👑', 200)" class="p-2.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">👑</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Taj Crown</span>
+                    <span class="text-[10px] text-amber-400 font-bold">200 🪙</span>
+                </button>
+                <button onclick="sendGift('Kohinoor', '💎', 500)" class="p-2.5 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/40 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">💎</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Kohinoor</span>
+                    <span class="text-[10px] text-amber-400 font-bold">500 🪙</span>
+                </button>
+            </div>
+
+            <!-- Footer with Wallet Top-up link -->
+            <div class="pt-3 border-t border-neutral-800 flex items-center justify-between">
+                <div class="flex items-center gap-1.5 text-xs text-neutral-300">
+                    <span>Balance:</span>
+                    <span id="sheetCoinBalance" class="font-bold text-amber-400 font-mono">250</span>
+                    <span>🪙</span>
+                </div>
+                <button onclick="openWalletModal()" class="px-3.5 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-colors">
+                    + Top Up Coins
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coin Wallet Top-Up Modal -->
+    <div id="walletModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4">
+        <div class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
+            <div class="flex justify-between items-center pb-3 border-b border-neutral-800">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <span class="text-amber-400 text-lg">🪙</span>
+                    <span>DesiTok Coin Wallet</span>
+                </h3>
+                <button onclick="closeWalletModal()" class="text-neutral-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="my-4 p-3 rounded-2xl bg-neutral-950 border border-neutral-800 text-center">
+                <span class="text-xs text-neutral-400">Available Balance</span>
+                <div class="text-2xl font-black text-amber-400 font-mono mt-0.5">
+                    <span id="modalCoinBalance">250</span> 🪙
+                </div>
+                <p class="text-[10px] text-neutral-500 mt-1">100 Desi Coins = ₹100 INR</p>
+            </div>
+
+            <span class="text-xs font-bold text-neutral-300 mb-2 block">Choose Top-Up Package</span>
+            <div class="space-y-2">
+                <button onclick="topUpCoins(100, 100)" class="w-full p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 flex justify-between items-center text-xs font-bold">
+                    <span class="text-amber-300">🪙 100 Coins</span>
+                    <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30">₹100</span>
+                </button>
+                <button onclick="topUpCoins(500, 500)" class="w-full p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 flex justify-between items-center text-xs font-bold">
+                    <span class="text-amber-300">🪙 500 Coins <span class="text-[9px] bg-rose-500 text-white px-1.5 py-0.5 rounded-full ml-1">POPULAR</span></span>
+                    <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30">₹500</span>
+                </button>
+                <button onclick="topUpCoins(1000, 1000)" class="w-full p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 flex justify-between items-center text-xs font-bold">
+                    <span class="text-amber-300">🪙 1,000 Coins</span>
+                    <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30">₹1,000</span>
+                </button>
+            </div>
+            <p class="text-[10px] text-center text-neutral-500 mt-4">Simulated Instant UPI / Net Banking Payment</p>
+        </div>
+    </div>
+
+    <!-- Creator Studio Dashboard Modal -->
+    <div id="studioModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4">
+        <div class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 max-w-md w-full shadow-2xl max-h-[85vh] overflow-y-auto no-scrollbar">
+            <div class="flex justify-between items-center pb-3 border-b border-neutral-800">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-400 to-rose-500 flex items-center justify-center">
+                        <i class="fa-solid fa-bolt text-white text-xs"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white">Creator Studio</h3>
+                        <span class="text-[10px] text-neutral-400">@bhim_shankar</span>
+                    </div>
+                </div>
+                <button onclick="closeStudioModal()" class="text-neutral-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-3 gap-2 my-4">
+                <div class="p-3 bg-neutral-950 border border-neutral-800 rounded-2xl text-center">
+                    <span class="text-[10px] text-neutral-400">Earned</span>
+                    <div id="studioEarningsRupees" class="text-base font-black text-rose-400 font-mono mt-0.5">₹4,850</div>
+                </div>
+                <div class="p-3 bg-neutral-950 border border-neutral-800 rounded-2xl text-center">
+                    <span class="text-[10px] text-neutral-400">Views</span>
+                    <div class="text-base font-black text-white font-mono mt-0.5">184K</div>
+                </div>
+                <div class="p-3 bg-neutral-950 border border-neutral-800 rounded-2xl text-center">
+                    <span class="text-[10px] text-neutral-400">Gifts Recv</span>
+                    <div id="studioEarningsGifts" class="text-base font-black text-amber-400 font-mono mt-0.5">48</div>
+                </div>
+            </div>
+
+            <!-- UPI Payout Box -->
+            <div class="p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
+                <span class="text-xs font-bold text-white block mb-1">Request Instant UPI Payout</span>
+                <p class="text-[10px] text-neutral-400 mb-3">Direct withdrawal to your GPay/PhonePe UPI ID</p>
+                <div class="space-y-2">
+                    <input id="payoutUpiInput" type="text" placeholder="yourname@upi or mobile@okhdfcbank" value="bhim@okhdfcbank" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500" />
+                    <input id="payoutAmountInput" type="number" placeholder="Amount (min ₹100)" value="1500" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500" />
+                    <button onclick="requestPayout()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-500 hover:to-orange-400 text-xs font-bold text-white shadow-lg transition-all">
+                        Withdraw Payout to UPI
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Reel Modal -->
+    <div id="uploadModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4">
+        <div class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
+            <div class="flex justify-between items-center pb-3 border-b border-neutral-800">
+                <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-video text-rose-500"></i>
+                    <span>Publish Reel to DesiTok</span>
+                </h3>
+                <button onclick="closeUploadModal()" class="text-neutral-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="my-4 space-y-3">
+                <div>
+                    <label class="text-[11px] font-bold text-neutral-400 block mb-1">Caption / Description</label>
+                    <textarea id="uploadCaption" rows="2" placeholder="Tell India about your video... #DesiTok" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-rose-500"></textarea>
+                </div>
+                <div>
+                    <label class="text-[11px] font-bold text-neutral-400 block mb-1">Audio Track</label>
+                    <input id="uploadAudio" type="text" value="Desi Beats Beats - Bollywood Mix" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500" />
+                </div>
+                <button onclick="publishNewReel()" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white shadow-lg shadow-rose-600/30 transition-all">
+                    Publish to Feed 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // State
+        let userCoins = parseInt(localStorage.getItem('desitok_coins') || '250', 10);
+        let creatorEarnings = parseInt(localStorage.getItem('desitok_earnings') || '4850', 10);
+        let activeGiftCreator = '@bhim_shankar';
+
+        function updateBalanceUI() {
+            document.getElementById('headerCoinBalance').textContent = userCoins.toLocaleString();
+            document.getElementById('sheetCoinBalance').textContent = userCoins.toLocaleString();
+            document.getElementById('modalCoinBalance').textContent = userCoins.toLocaleString();
+            document.getElementById('studioEarningsRupees').textContent = '₹' + creatorEarnings.toLocaleString();
+            localStorage.setItem('desitok_coins', userCoins.toString());
+            localStorage.setItem('desitok_earnings', creatorEarnings.toString());
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 2400);
+        }
+
+        function scrollToTop() {
+            document.getElementById('feed').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleVideo(video) {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        function toggleFollow(btn) {
+            if (btn.textContent.trim() === 'Follow') {
+                btn.textContent = 'Following';
+                btn.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-neutral-800 border border-neutral-700 text-neutral-300';
+                showToast('Followed creator! 🎉');
+            } else {
+                btn.textContent = 'Follow';
+                btn.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-600 hover:bg-rose-500 text-white';
+                showToast('Unfollowed creator');
+            }
+        }
+
+        function toggleLike(btn, counterId, baseCount) {
+            const icon = btn.querySelector('i');
+            const isLiked = icon.classList.toggle('text-rose-500');
+            icon.classList.add('heart-pop');
+            setTimeout(() => icon.classList.remove('heart-pop'), 350);
+
+            const counter = document.getElementById(counterId);
+            if (counter) {
+                const count = isLiked ? baseCount + 1 : baseCount;
+                counter.textContent = count >= 1000 ? (count / 1000).toFixed(1) + 'K' : count;
+            }
+            showToast(isLiked ? 'Reel liked! ❤️' : 'Removed like');
+        }
+
+        // Comments
+        function openComments(creator, count) {
+            document.getElementById('commentsTitle').innerHTML = `<i class="fa-solid fa-comments text-rose-500"></i> Comments on ${creator} (${count})`;
+            const modal = document.getElementById('commentsModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeComments() {
+            document.getElementById('commentsModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function postComment() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+            if (!text) return;
+            const list = document.getElementById('commentsList');
+            const item = document.createElement('div');
+            item.className = 'flex items-start gap-2.5';
+            item.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-emerald-600/30 text-emerald-400 font-bold flex items-center justify-center text-xs">U</div>
+                <div>
+                    <span class="font-bold text-white">@you</span>
+                    <p class="text-neutral-300 mt-0.5">${text}</p>
+                </div>
+            `;
+            list.appendChild(item);
+            input.value = '';
+            showToast('Comment posted! 💬');
+        }
+
+        function shareReel(creator) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'DesiTok - Indian Reels',
+                    text: `Watch ${creator}'s trending video on DesiTok!`,
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href);
+                showToast(`Share link copied for ${creator}'s reel! 🔗`);
+            }
+        }
+
+        // Virtual Gifting
+        function openGiftSheet(creator) {
+            activeGiftCreator = creator;
+            document.getElementById('giftTargetCreator').textContent = creator;
+            document.getElementById('giftSheetModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeGiftSheet() {
+            document.getElementById('giftSheetModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function sendGift(giftName, emoji, coins) {
+            if (userCoins < coins) {
+                showToast('Insufficient coins. Please top up your wallet!');
+                closeGiftSheet();
+                openWalletModal();
+                return;
+            }
+
+            userCoins -= coins;
+            creatorEarnings += coins;
+            updateBalanceUI();
+            closeGiftSheet();
+
+            // Trigger visual animation overlay
+            const overlay = document.getElementById('giftAnimationOverlay');
+            const box = document.getElementById('giftAnimBox');
+            document.getElementById('giftAnimEmoji').textContent = emoji;
+            document.getElementById('giftAnimTitle').textContent = `${giftName}!`;
+            document.getElementById('giftAnimSender').textContent = `You gifted ${coins} 🪙 to ${activeGiftCreator}`;
+
+            overlay.classList.remove('opacity-0');
+            box.classList.remove('gift-float-anim');
+            void box.offsetWidth; // trigger reflow
+            box.classList.add('gift-float-anim');
+
+            setTimeout(() => {
+                overlay.classList.add('opacity-0');
+            }, 2800);
+
+            showToast(`Sent ${giftName} ${emoji} to ${activeGiftCreator}! 🎉`);
+        }
+
+        // Coin Wallet Modal
+        function openWalletModal() {
+            document.getElementById('walletModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeWalletModal() {
+            document.getElementById('walletModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function topUpCoins(coins, rupees) {
+            userCoins += coins;
+            updateBalanceUI();
+            closeWalletModal();
+            showToast(`+${coins} Desi Coins added to wallet! (₹${rupees}) 🪙`);
+        }
+
+        // Creator Studio Modal
+        function openStudioModal() {
+            document.getElementById('studioModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeStudioModal() {
+            document.getElementById('studioModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function requestPayout() {
+            const amount = parseInt(document.getElementById('payoutAmountInput').value, 10);
+            const upi = document.getElementById('payoutUpiInput').value.trim();
+            if (!upi) {
+                showToast('Please enter a valid UPI ID');
+                return;
+            }
+            if (!amount || amount < 100) {
+                showToast('Minimum payout request is ₹100');
+                return;
+            }
+            if (amount > creatorEarnings) {
+                showToast('Requested amount exceeds available balance!');
+                return;
+            }
+
+            creatorEarnings -= amount;
+            updateBalanceUI();
+            showToast(`UPI Payout of ₹${amount} sent to ${upi}! 🚀`);
+            closeStudioModal();
+        }
+
+        // Upload Reel Modal
+        function openUploadModal() {
+            document.getElementById('uploadModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function publishNewReel() {
+            const caption = document.getElementById('uploadCaption').value.trim() || 'My new dance reel on DesiTok! 🕺 #DesiTok';
+            const audio = document.getElementById('uploadAudio').value.trim() || 'Original Sound • DesiTok';
+
+            const feed = document.getElementById('feed');
+            const newReel = document.createElement('div');
+            newReel.className = 'reel-container w-full h-full snap-start snap-always relative flex-shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden';
+            newReel.innerHTML = `
+                <video class="reel-video w-full h-full object-cover cursor-pointer" autoplay loop muted playsinline onclick="toggleVideo(this)">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-young-man-dancing-hip-hop-in-the-street-41595-large.mp4" type="video/mp4">
+                </video>
+                <div class="absolute bottom-20 left-4 right-20 z-10 pointer-events-none drop-shadow-md">
+                    <div class="flex items-center gap-2 pointer-events-auto">
+                        <h3 class="font-bold text-base text-white">@bhim_shankar</h3>
+                        <i class="fa-solid fa-circle-check text-rose-500 text-xs"></i>
+                    </div>
+                    <p class="text-xs text-gray-200 mt-1 pointer-events-auto leading-relaxed">${caption}</p>
+                    <div class="flex items-center gap-2 mt-2 text-[11px] text-neutral-300 pointer-events-auto">
+                        <i class="fa-solid fa-music text-[10px] text-rose-400"></i>
+                        <span class="truncate max-w-[200px]">${audio}</span>
+                    </div>
+                </div>
+                <div class="absolute right-3.5 bottom-24 z-10 flex flex-col items-center space-y-3.5">
+                    <button class="flex flex-col items-center text-white group" onclick="toggleLike(this, 'like-new-${Date.now()}', 0)">
+                        <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-heart text-xl text-white"></i>
+                        </div>
+                        <span id="like-new-${Date.now()}" class="text-[11px] mt-1 font-bold">0</span>
+                    </button>
+                    <button class="flex flex-col items-center text-white group" onclick="openComments('@bhim_shankar', 0)">
+                        <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-comment-dots text-xl text-white"></i>
+                        </div>
+                        <span class="text-[11px] mt-1 font-bold">0</span>
+                    </button>
+                    <button class="flex flex-col items-center text-amber-300 group" onclick="openGiftSheet('@bhim_shankar')">
+                        <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500/30 via-orange-500/25 to-rose-500/30 backdrop-blur-md flex items-center justify-center border border-amber-400/50 group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-gift text-xl text-amber-300"></i>
+                        </div>
+                        <span class="text-[11px] mt-1 font-bold text-amber-300">Gift</span>
+                    </button>
+                    <button class="flex flex-col items-center text-white group" onclick="shareReel('@bhim_shankar')">
+                        <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-share text-lg text-white"></i>
+                        </div>
+                        <span class="text-[11px] mt-1 font-bold">Share</span>
+                    </button>
+                </div>
+            `;
+            feed.prepend(newReel);
+            closeUploadModal();
+            feed.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast('Reel published to DesiTok feed! 🚀');
+        }
+
+        // Scroll listener for video autoplay on active snap item
+        const feed = document.getElementById('feed');
+        feed.addEventListener('scroll', () => {
+            const reels = feed.querySelectorAll('.reel-container');
+            const scrollPos = feed.scrollTop;
+            const height = feed.clientHeight;
+            reels.forEach(reel => {
+                const video = reel.querySelector('video');
+                const offset = reel.offsetTop;
+                if (Math.abs(offset - scrollPos) < height / 2) {
+                    if (video && video.paused) video.play().catch(() => {});
+                } else {
+                    if (video && !video.paused) video.pause();
+                }
+            });
+        });
+
+        // Initialize state on page load
+        updateBalanceUI();
     </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+</body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DesiTok - Indian Reels & Short Videos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.35); }
+            100% { transform: scale(1); }
+        }
+        .heart-pop { animation: heartPulse 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spin-vinyl { animation: spinSlow 5s linear infinite; }
+
+        @keyframes floatGiftUp {
+            0% { transform: translateY(80px) scale(0.6); opacity: 0; }
+            20% { opacity: 1; transform: translateY(0px) scale(1.15); }
+            75% { opacity: 1; transform: translateY(-70px) scale(1.05); }
+            100% { opacity: 0; transform: translateY(-160px) scale(0.9); }
+        }
+        .gift-float-anim { animation: floatGiftUp 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    </style>
+</head>
+<body class="bg-black text-white h-screen w-screen flex flex-col justify-between overflow-hidden select-none font-sans">
+
+    <!-- Top App Header -->
+    <header class="absolute top-0 left-0 w-full z-20 flex justify-between items-center px-4 py-3 bg-gradient-to-b from-black/90 via-black/40 to-transparent">
+        <div class="flex items-center gap-2">
+            <h1 class="text-xl font-black tracking-wider text-rose-500 flex items-center gap-1.5 cursor-pointer" onclick="scrollToTop()">
+                <span>DesiTok</span>
+                <span class="text-base">🇮🇳</span>
+            </h1>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 hidden sm:inline-block">
+                Bharat Ka Reels
+            </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <!-- Coin Wallet Pill -->
+            <button onclick="openWalletModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-xs font-bold transition-all shadow-md active:scale-95">
+                <span>🪙</span>
+                <span id="headerCoinBalance" class="font-mono text-[11px]">250</span>
+            </button>
+
+            <!-- Upload Reel Button -->
+            <button onclick="openUploadModal()" class="bg-rose-600 hover:bg-rose-500 active:scale-95 transition-all text-white px-3.5 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-rose-600/30 flex items-center gap-1.5">
+                <i class="fa-solid fa-plus text-[10px]"></i>
+                <span>Upload</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Vertical Reels Feed -->
+    <main id="feed" class="flex-1 w-full h-full relative overflow-y-scroll snap-y snap-mandatory flex flex-col items-center no-scrollbar">
+        
+        <!-- Reel 1: @bhim_shankar -->
+        <div class="reel-container w-full h-full snap-start snap-always relative flex-shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden" data-reel-id="1" data-lat="28.6139" data-lng="77.2090">
+            <video class="reel-video w-full h-full object-cover cursor-pointer" autoplay loop muted playsinline onclick="toggleVideo(this)">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-lights-41642-large.mp4" type="video/mp4">
+            </video>
+
+            <!-- Video Info Overlay -->
+            <div class="absolute bottom-20 left-4 right-20 z-10 pointer-events-none drop-shadow-md">
+                <div class="flex items-center gap-2 pointer-events-auto">
+                    <h3 class="font-bold text-base text-white">@bhim_shankar</h3>
+                    <i class="fa-solid fa-circle-check text-rose-500 text-xs"></i>
+                    <button onclick="toggleFollow(this)" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-600 hover:bg-rose-500 text-white transition-colors">
+                        Follow
+                    </button>
+                </div>
+                <!-- Location & Distance Badge -->
+                <div class="flex items-center gap-1.5 mt-1 text-[11px] text-rose-300 font-medium pointer-events-auto">
+                    <i class="fa-solid fa-location-dot text-rose-500"></i>
+                    <span class="location-tag">New Delhi • Calculating distance...</span>
+                </div>
+                <p class="text-xs text-gray-200 mt-1 pointer-events-auto leading-relaxed">
+                    Welcome to DesiTok! India's own short video platform. 🚀 <span class="text-rose-400 font-semibold">#DesiTok #India #Reels</span>
+                </p>
+                <div class="flex items-center gap-2 mt-2 text-[11px] text-neutral-300 pointer-events-auto">
+                    <i class="fa-solid fa-music text-[10px] text-rose-400"></i>
+                    <span class="truncate max-w-[200px]">Desi Dhadkan (Official Anthem) • DesiTok Records</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons Sidebar -->
+            <div class="absolute right-3.5 bottom-24 z-10 flex flex-col items-center space-y-3.5">
+                <button class="flex flex-col items-center text-white group" onclick="toggleLike(this, 'like-1', 15200)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart text-xl text-white transition-colors"></i>
+                    </div>
+                    <span id="like-1" class="text-[11px] mt-1 font-bold">15.2K</span>
+                </button>
+
+                <button class="flex flex-col items-center text-white group" onclick="openComments('@bhim_shankar', 840)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-comment-dots text-xl text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">840</span>
+                </button>
+
+                <button class="flex flex-col items-center text-amber-300 group" onclick="openGiftSheet('@bhim_shankar')">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500/30 via-orange-500/25 to-rose-500/30 backdrop-blur-md flex items-center justify-center border border-amber-400/50 group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/20">
+                        <i class="fa-solid fa-gift text-xl text-amber-300"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold text-amber-300">Gift</span>
+                </button>
+
+                <button class="flex flex-col items-center text-white group" onclick="shareReel('@bhim_shankar')">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-share text-lg text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">Share</span>
+                </button>
+
+                <div class="w-10 h-10 rounded-full bg-neutral-900 border-2 border-neutral-700 flex items-center justify-center spin-vinyl p-0.5 mt-1">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=80&q=80" alt="Audio track" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <!-- Reel 2: @creator_hub -->
+        <div class="reel-container w-full h-full snap-start snap-always relative flex-shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden" data-reel-id="2" data-lat="23.2599" data-lng="77.4126">
+            <video class="reel-video w-full h-full object-cover cursor-pointer" loop muted playsinline onclick="toggleVideo(this)">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-tree-branches-in-the-breeze-1186-large.mp4" type="video/mp4">
+            </video>
+
+            <div class="absolute bottom-20 left-4 right-20 z-10 pointer-events-none drop-shadow-md">
+                <div class="flex items-center gap-2 pointer-events-auto">
+                    <h3 class="font-bold text-base text-white">@creator_hub</h3>
+                    <i class="fa-solid fa-circle-check text-rose-500 text-xs"></i>
+                    <button onclick="toggleFollow(this)" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 text-neutral-300 transition-colors">
+                        Following
+                    </button>
+                </div>
+                <!-- Location & Distance Badge -->
+                <div class="flex items-center gap-1.5 mt-1 text-[11px] text-rose-300 font-medium pointer-events-auto">
+                    <i class="fa-solid fa-location-dot text-rose-500"></i>
+                    <span class="location-tag">Bhopal, MP • Calculating distance...</span>
+                </div>
+                <p class="text-xs text-gray-200 mt-1 pointer-events-auto leading-relaxed">
+                    Beautiful nature vibe across Incredible India 🌳✨ <span class="text-rose-400 font-semibold">#Nature #Vibes</span>
+                </p>
+                <div class="flex items-center gap-2 mt-2 text-[11px] text-neutral-300 pointer-events-auto">
+                    <i class="fa-solid fa-music text-[10px] text-rose-400"></i>
+                    <span class="truncate max-w-[200px]">Whispering Winds • Nature Soundscapes</span>
+                </div>
+            </div>
+
+            <div class="absolute right-3.5 bottom-24 z-10 flex flex-col items-center space-y-3.5">
+                <button class="flex flex-col items-center text-white group" onclick="toggleLike(this, 'like-2', 9400)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart text-xl text-rose-500"></i>
+                    </div>
+                    <span id="like-2" class="text-[11px] mt-1 font-bold">9.4K</span>
+                </button>
+
+                <button class="flex flex-col items-center text-white group" onclick="openComments('@creator_hub', 310)">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-comment-dots text-xl text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">310</span>
+                </button>
+
+                <button class="flex flex-col items-center text-amber-300 group" onclick="openGiftSheet('@creator_hub')">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500/30 via-orange-500/25 to-rose-500/30 backdrop-blur-md flex items-center justify-center border border-amber-400/50 group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/20">
+                        <i class="fa-solid fa-gift text-xl text-amber-300"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold text-amber-300">Gift</span>
+                </button>
+
+                <button class="flex flex-col items-center text-white group" onclick="shareReel('@creator_hub')">
+                    <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-share text-lg text-white"></i>
+                    </div>
+                    <span class="text-[11px] mt-1 font-bold">Share</span>
+                </button>
+
+                <div class="w-10 h-10 rounded-full bg-neutral-900 border-2 border-neutral-700 flex items-center justify-center spin-vinyl p-0.5 mt-1">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=80&q=80" alt="Audio track" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="absolute bottom-0 left-0 w-full bg-black/95 backdrop-blur-md border-t border-zinc-800 flex justify-around items-center py-2.5 z-20">
+        <a href="#" onclick="scrollToTop(); return false;" class="text-rose-500 flex flex-col items-center">
+            <i class="fa-solid fa-house text-lg"></i>
+            <span class="text-[10px] mt-1 font-bold">Home</span>
+        </a>
+        <a href="#" onclick="showToast('Discovering viral reels across India 🇮🇳'); return false;" class="text-gray-400 hover:text-white flex flex-col items-center transition-colors">
+            <i class="fa-solid fa-compass text-lg"></i>
+            <span class="text-[10px] mt-1 font-medium">Discover</span>
+        </a>
+        <a href="#" onclick="openUploadModal(); return false;" class="text-rose-500 hover:scale-110 flex flex-col items-center transition-transform">
+            <i class="fa-solid fa-circle-plus text-3xl"></i>
+        </a>
+        <a href="#" onclick="openStudioModal(); return false;" class="text-gray-400 hover:text-amber-400 flex flex-col items-center transition-colors relative">
+            <i class="fa-solid fa-chart-line text-lg"></i>
+            <span class="text-[10px] mt-1 font-medium">Studio</span>
+            <span class="absolute -top-1 -right-1 px-1 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-[8px] font-black text-white leading-none">
+                PRO
+            </span>
+        </a>
+        <a href="#" onclick="showToast('Profile: @bhim_shankar • 15.2K Likes'); return false;" class="text-gray-400 hover:text-white flex flex-col items-center transition-colors">
+            <i class="fa-solid fa-user text-lg"></i>
+            <span class="text-[10px] mt-1 font-medium">Profile</span>
+        </a>
+    </nav>
+
+    <!-- Toast Banner -->
+    <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-neutral-900/95 border border-rose-500/40 text-rose-300 text-xs font-semibold shadow-2xl backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200">
+        Message
+    </div>
+
+    <!-- Floating Gift Animation Overlay -->
+    <div id="giftAnimationOverlay" class="fixed inset-0 z-50 pointer-events-none flex flex-col items-center justify-center opacity-0 transition-opacity">
+        <div id="giftAnimBox" class="flex flex-col items-center">
+            <div id="giftAnimEmoji" class="text-7xl drop-shadow-[0_10px_20px_rgba(245,158,11,0.5)]">🎁</div>
+            <div id="giftAnimTitle" class="mt-2 text-xl font-black text-amber-300 drop-shadow">Taj Mahal Crown!</div>
+            <div id="giftAnimSender" class="text-xs text-white/90 font-semibold bg-black/60 px-3 py-1 rounded-full mt-1 border border-white/20">
+                You sent a gift to @creator
+            </div>
+        </div>
+    </div>
+
+    <!-- Comments Sheet Modal -->
+    <div id="commentsModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 flex flex-col justify-end">
+        <div class="bg-neutral-900 border-t border-neutral-800 rounded-t-3xl p-5 max-w-lg mx-auto w-full max-h-[65vh] flex flex-col shadow-2xl">
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
+                <h4 id="commentsTitle" class="text-sm font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-rose-500"></i>
+                    <span>Comments</span>
+                </h4>
+                <button onclick="closeComments()" class="text-neutral-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div id="commentsList" class="flex-1 overflow-y-auto py-3 space-y-3.5 text-xs no-scrollbar">
+                <div class="flex items-start gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-rose-600/30 text-rose-400 font-bold flex items-center justify-center text-xs">A</div>
+                    <div>
+                        <span class="font-bold text-white">@aarav_patel</span>
+                        <p class="text-neutral-300 mt-0.5">Proud to see Indian apps rocking this quality! Jai Hind 🇮🇳🔥</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-amber-600/30 text-amber-400 font-bold flex items-center justify-center text-xs">R</div>
+                    <div>
+                        <span class="font-bold text-white">@rohit_v</span>
+                        <p class="text-neutral-300 mt-0.5">Brilliant video quality and smooth playback! Keep going.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-neutral-800 flex gap-2">
+                <input id="commentInput" type="text" placeholder="Add a comment on this reel..." class="flex-1 bg-neutral-950 border border-neutral-800 rounded-full px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-rose-500" />
+                <button onclick="postComment()" class="px-5 py-2.5 rounded-full bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white">
+                    Post
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Gift Sheet Modal -->
+    <div id="giftSheetModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 flex flex-col justify-end">
+        <div class="bg-neutral-900 border-t border-amber-500/30 rounded-t-3xl p-5 max-w-lg mx-auto w-full flex flex-col shadow-2xl">
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
+                <div>
+                    <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                        <span>🎁 Send Virtual Gift to</span>
+                        <span id="giftTargetCreator" class="text-rose-400">@creator</span>
+                    </h4>
+                    <p class="text-[11px] text-neutral-400">Coins convert to real ₹ INR creator earnings (₹100 = 100 Coins)</p>
+                </div>
+                <button onclick="closeGiftSheet()" class="text-neutral-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2.5 py-4">
+                <button onclick="sendGift('Kadak Chai', '☕', 20)" class="p-2.5 rounded-2xl bg-neutral-800/80 hover:bg-neutral-700/80 border border-neutral-700 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">☕</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Chai</span>
+                    <span class="text-[10px] text-amber-400 font-bold">20 🪙</span>
+                </button>
+                <button onclick="sendGift('Dil Se', '❤️', 50)" class="p-2.5 rounded-2xl bg-neutral-800/80 hover:bg-neutral-700/80 border border-neutral-700 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">❤️</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Dil Se</span>
+                    <span class="text-[10px] text-amber-400 font-bold">50 🪙</span>
+                </button>
+                <button onclick="sendGift('Taj Crown', '👑', 200)" class="p-2.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">👑</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Taj Crown</span>
+                    <span class="text-[10px] text-amber-400 font-bold">200 🪙</span>
+                </button>
+                <button onclick="sendGift('Kohinoor', '💎', 500)" class="p-2.5 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/40 flex flex-col items-center text-center transition-all hover:scale-105">
+                    <span class="text-3xl">💎</span>
+                    <span class="text-[11px] font-bold text-white mt-1">Kohinoor</span>
+                    <span class="text-[10px] text-amber-400 font-bold">500 🪙</span>
+                </button>
+            </div>
+
+            <div class="pt-3 border-t border-neutral-800 flex items-center justify-between">
+                <div class="flex items-center gap-1.5 text-xs text-neutral-300">
+                    <span>Balance:</span>
+                    <span id="sheetCoinBalance" class="font-bold text-amber-400 font-mono">250</span>
+                    <span>🪙</span>
+                </div>
+                <button onclick="openWalletModal()" class="px-3.5 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-colors">
+                    + Top Up Coins
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coin Wallet Top-Up Modal -->
+    <div id="walletModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4">
+        <div class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
+            <div class="flex justify-between items-center pb-3 border-b border-neutral-800">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <span class="text-amber-400 text-lg">🪙</span>
+                    <span>DesiTok Coin Wallet</span>
+                </h3>
+                <button onclick="closeWalletModal()" class="text-neutral-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="my-4 p-3 rounded-2xl bg-neutral-950 border border-neutral-800 text-center">
+                <span class="text-xs text-neutral-400">Available Balance</span>
+                <div class="text-2xl font-black text-amber-400 font-mono mt-0.5">
+                    <span id="modalCoinBalance">250</span> 🪙
+                </div>
+                <p class="text-[10px] text-neutral-500 mt-1">100 Desi Coins = ₹100 INR</p>
+            </div>
+
+            <span class="text-xs font-bold text-neutral-300 mb-2 block">Choose Top-Up Package</span>
+            <div class="space-y-2">
+                <button onclick="topUpCoins(100, 100)" class="w-full p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 flex justify-between items-center text-xs font-bold">
+                    <span class="text-amber-300">🪙 100 Coins</span>
+                    <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30">₹100</span>
+                </button>
+                <button onclick="topUpCoins(500, 500)" class="w-full p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 flex justify-between items-center text-xs font-bold">
+                    <span class="text-amber-300">🪙 500 Coins <span class="text-[9px] bg-rose-500 text-white px-1.5 py-0.5 rounded-full ml-1">POPULAR</span></span>
+                    <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30">₹500</span>
+                </button>
+                <button onclick="topUpCoins(1000, 1000)" class="w-full p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 flex justify-between items-center text-xs font-bold">
+                    <span class="text-amber-300">🪙 1,000 Coins</span>
+                    <span class="bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/30">₹1,000</span>
+                </button>
+            </div>
+            <p class="text-[10px] text-center text-neutral-500 mt-4">Simulated Instant UPI / Net Banking Payment</p>
+        </div>
+    </div>
+
+    <!-- Creator Studio Dashboard Modal -->
+    <div id="studioModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4">
+        <div class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 max-w-md w-full shadow-2xl max-h-[85vh] overflow-y-auto no-scrollbar">
+            <div class="flex justify-between items-center pb-3 border-b border-neutral-800">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-400 to-rose-500 flex items-center justify-center">
+                        <i class="fa-solid fa-bolt text-white text-xs"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white">Creator Studio</h3>
+                        <span class="text-[10px] text-neutral-400">@bhim_shankar</span>
+                    </div>
+                </div>
+                <button onclick="closeStudioModal()" class="text-neutral-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 my-4">
+                <div class="p-3 bg-neutral-950 border border-neutral-800 rounded-2xl text-center">
+                    <span class="text-[10px] text-neutral-400">Earned</span>
+                    <div id="studioEarningsRupees" class="text-base font-black text-rose-400 font-mono mt-0.5">₹4,850</div>
+                </div>
+                <div class="p-3 bg-neutral-950 border border-neutral-800 rounded-2xl text-center">
+                    <span class="text-[10px] text-neutral-400">Views</span>
+                    <div class="text-base font-black text-white font-mono mt-0.5">184K</div>
+                </div>
+                <div class="p-3 bg-neutral-950 border border-neutral-800 rounded-2xl text-center">
+                    <span class="text-[10px] text-neutral-400">Gifts Recv</span>
+                    <div id="studioEarningsGifts" class="text-base font-black text-amber-400 font-mono mt-0.5">48</div>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
+                <span class="text-xs font-bold text-white block mb-1">Request Instant UPI Payout</span>
+                <p class="text-[10px] text-neutral-400 mb-3">Direct withdrawal to your GPay/PhonePe UPI ID</p>
+                <div class="space-y-2">
+                    <input id="payoutUpiInput" type="text" placeholder="yourname@upi or mobile@okhdfcbank" value="bhim@okhdfcbank" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500" />
+                    <input id="payoutAmountInput" type="number" placeholder="Amount (min ₹100)" value="1500" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500" />
+                    <button onclick="requestPayout()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-500 hover:to-orange-400 text-xs font-bold text-white shadow-lg transition-all">
+                        Withdraw Payout to UPI
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Reel Modal -->
+    <div id="uploadModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center p-4">
+        <div class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl">
+            <div class="flex justify-between items-center pb-3 border-b border-neutral-800">
+                <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-video text-rose-500"></i>
+                    <span>Publish Reel to DesiTok</span>
+                </h3>
+                <button onclick="closeUploadModal()" class="text-neutral-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="my-4 space-y-3">
+                <div>
+                    <label class="text-[11px] font-bold text-neutral-400 block mb-1">Caption / Description</label>
+                    <textarea id="uploadCaption" rows="2" placeholder="Tell India about your video... #DesiTok" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-rose-500"></textarea>
+                </div>
+                <div>
+                    <label class="text-[11px] font-bold text-neutral-400 block mb-1">Audio Track</label>
+                    <input id="uploadAudio" type="text" value="Desi Beats - Bollywood Mix" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500" />
+                </div>
+                <button onclick="publishNewReel()" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white shadow-lg shadow-rose-600/30 transition-all">
+                    Publish to Feed 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // State
+        let userCoins = parseInt(localStorage.getItem('desitok_coins') || '250', 10);
+        let creatorEarnings = parseInt(localStorage.getItem('desitok_earnings') || '4850', 10);
+        let activeGiftCreator = '@bhim_shankar';
+        let userCoords = { lat: 28.6139, lng: 77.2090 }; // Default fallback (Delhi)
+
+        // Fetch User Location on Load
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                userCoords.lat = position.coords.latitude;
+                userCoords.lng = position.coords.longitude;
+                calculateAllDistances();
+            }, () => {
+                calculateAllDistances(); // Use default if permission denied
+            });
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the earth in km
+            const dLat = deg2rad(lat2 - lat1);
+            const dLon = deg2rad(lon2 - lon1);
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c; // Distance in km
+        }
+
+        function deg2rad(deg) {
+            return deg * (Math.PI/180);
+        }
+
+        function calculateAllDistances() {
+            document.querySelectorAll('.reel-container').forEach(reel => {
+                const rLat = parseFloat(reel.getAttribute('data-lat'));
+                const rLng = parseFloat(reel.getAttribute('data-lng'));
+                const tag = reel.querySelector('.location-tag');
+                if (tag && !isNaN(rLat) && !isNaN(rLng)) {
+                    const dist = calculateDistance(userCoords.lat, userCoords.lng, rLat, rLng);
+                    const distText = dist < 1 ? 'Less than 1 km away' : `${dist.toFixed(1)} km away`;
+                    tag.textContent = `${tag.textContent.split('•')[0].trim()} • 📍 ${distText}`;
+                }
+            });
+        }
+
+        function updateBalanceUI() {
+            document.getElementById('headerCoinBalance').textContent = userCoins.toLocaleString();
+            document.getElementById('sheetCoinBalance').textContent = userCoins.toLocaleString();
+            document.getElementById('modalCoinBalance').textContent = userCoins.toLocaleString();
+            document.getElementById('studioEarningsRupees').textContent = '₹' + creatorEarnings.toLocaleString();
+            localStorage.setItem('desitok_coins', userCoins.toString());
+            localStorage.setItem('desitok_earnings', creatorEarnings.toString());
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 2400);
+        }
+
+        function scrollToTop() {
+            document.getElementById('feed').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleVideo(video) {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        function toggleFollow(btn) {
+            if (btn.textContent.trim() === 'Follow') {
+                btn.textContent = 'Following';
+                btn.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-neutral-800 border border-neutral-700 text-neutral-300';
+                showToast('Followed creator! 🎉');
+            } else {
+                btn.textContent = 'Follow';
+                btn.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-600 hover:bg-rose-500 text-white';
+                showToast('Unfollowed creator');
+            }
+        }
+
+        function toggleLike(btn, counterId, baseCount) {
+            const icon = btn.querySelector('i');
+            const isLiked = icon.classList.toggle('text-rose-500');
+            icon.classList.add('heart-pop');
+            setTimeout(() => icon.classList.remove('heart-pop'), 350);
+
+            const counter = document.getElementById(counterId);
+            if (counter) {
+                const count = isLiked ? baseCount + 1 : baseCount;
+                counter.textContent = count >= 1000 ? (count / 1000).toFixed(1) + 'K' : count;
+            }
+            showToast(isLiked ? 'Reel liked! ❤️' : 'Removed like');
+        }
+
+        // Comments
+        function openComments(creator, count) {
+            document.getElementById('commentsTitle').innerHTML = `<i class="fa-solid fa-comments text-rose-500"></i> Comments on ${creator} (${count})`;
+            const modal = document.getElementById('commentsModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeComments() {
+            document.getElementById('commentsModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function postComment() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+            if (!text) return;
+            const list = document.getElementById('commentsList');
+            const item = document.createElement('div');
+            item.className = 'flex items-start gap-2.5';
+            item.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-emerald-600/30 text-emerald-400 font-bold flex items-center justify-center text-xs">U</div>
+                <div>
+                    <span class="font-bold text-white">@you</span>
+                    <p class="text-neutral-300 mt-0.5">${text}</p>
+                </div>
+            `;
+            list.appendChild(item);
+            input.value = '';
+            showToast('Comment posted! 💬');
+        }
+
+        function shareReel(creator) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'DesiTok - Indian Reels',
+                    text: `Watch ${creator}'s trending video on DesiTok!`,
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard?.writeText(window.location.href);
+                showToast(`Share link copied for ${creator}'s reel! 🔗`);
+            }
+        }
+
+        // Virtual Gifting
+        function openGiftSheet(creator) {
+            activeGiftCreator = creator;
+            document.getElementById('giftTargetCreator').textContent = creator;
+            document.getElementById('giftSheetModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeGiftSheet() {
+            document.getElementById('giftSheetModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function sendGift(giftName, emoji, coins) {
+            if (userCoins < coins) {
+                showToast('Insufficient coins. Please top up your wallet!');
+                closeGiftSheet();
+                openWalletModal();
+                return;
+            }
+
+            userCoins -= coins;
+            creatorEarnings += coins;
+            updateBalanceUI();
+            closeGiftSheet();
+
+            const overlay = document.getElementById('giftAnimationOverlay');
+            const box = document.getElementById('giftAnimBox');
+            document.getElementById('giftAnimEmoji').textContent = emoji;
+            document.getElementById('giftAnimTitle').textContent = `${giftName}!`;
+            document.getElementById('giftAnimSender').textContent = `You gifted ${coins} 🪙 to ${activeGiftCreator}`;
+
+            overlay.classList.remove('opacity-0');
+            box.classList.remove('gift-float-anim');
+            void box.offsetWidth;
+            box.classList.add('gift-float-anim');
+
+            setTimeout(() => {
+                overlay.classList.add('opacity-0');
+            }, 2800);
+
+            showToast(`Sent ${giftName} ${emoji} to ${activeGiftCreator}! 🎉`);
+        }
+
+        // Coin Wallet Modal
+        function openWalletModal() {
+            document.getElementById('walletModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeWalletModal() {
+            document.getElementById('walletModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function topUpCoins(coins, rupees) {
+            userCoins += coins;
+            updateBalanceUI();
+            closeWalletModal();
+            showToast(`+${coins} Desi Coins added to wallet! (₹${rupees}) 🪙`);
+        }
+
+        // Creator Studio Modal
+        function openStudioModal() {
+            document.getElementById('studioModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeStudioModal() {
+            document.getElementById('studioModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function requestPayout() {
+            const amount = parseInt(document.getElementById('payoutAmountInput').value, 10);
+            const upi = document.getElementById('payoutUpiInput').value.trim();
+            if (!upi) {
+                showToast('Please enter a valid UPI ID');
+                return;
+            }
+            if (!amount || amount < 100) {
+                showToast('Minimum payout request is ₹100');
+                return;
+            }
+            if (amount > creatorEarnings) {
+                showToast('Requested amount exceeds available balance!');
+                return;
+            }
+
+            creatorEarnings -= amount;
+            updateBalanceUI();
+            showToast(`UPI Payout of ₹${amount} sent to ${upi}! 🚀`);
+            closeStudioModal();
+        }
+
+        // Upload Reel Modal
+        function openUploadModal() {
+            document.getElementById('uploadModal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function publishNewReel() {
+            const caption = document.getElementById('uploadCaption').value.trim() || 'My new dance reel on DesiTok! 🕺 #DesiTok';
+            const audio = document.getElementById('uploadAudio').value.trim() || 'Original Sound • DesiTok';
+
+            const feed = document.getElementById('feed');
+            const newReel = document.createElement('div');
+            newReel.className = 'reel-container w-full h-full snap-start snap-always relative flex-shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden';
+            newReel.setAttribute('data-lat', userCoords.lat);
+            newReel.setAttribute('data-lng', userCoords.lng);
+
+            newReel.innerHTML = `
+                <video class="reel-video w-full h-full object-cover cursor-pointer" autoplay loop muted playsinline onclick="toggleVideo(this)">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-young-man-dancing-hip-hop-in-the-street-41595-large.mp4" type="video/mp4">
+                </video>
+                <div class="absolute bottom-20 left-4 right-20 z-10 pointer-events-none drop-shadow-md">
+                    <div class="flex items-center gap-2 pointer-events-auto">
+                        <h3 class="font-bold text-base text-white">@bhim_shankar</h3>
+                        <i class="fa-solid fa-circle-check text-rose-500 text-xs"></i>
+                    </div>
+                    <div class="flex items-center gap-1.5 mt-1 text-[11px] text-rose-300 font-medium pointer-events-auto">
+                        <i class="fa-solid fa-location-dot text-rose-500"></i>
+                        <span class="location-tag">Your Location • 📍 0.0 km away</span>
+                    </div>
+                    <p class="text-xs text-gray-200 mt-1 pointer-events-auto leading-relaxed">${caption}</p>
+                    <div class="flex items-center gap-2 mt-2 text-[11px] text-neutral-300 pointer-events-auto">
+                        <i class="fa-solid fa-music text-[10px] text-rose-400"></i>
+                        <span class="truncate max-w-[200px]">${audio}</span>
+                    </div>
+                </div>
+                <div class="absolute right-3.5 bottom-24 z-10 flex flex-col items-center space-y-3.5">
+                    <button class="flex flex-col items-center text-white group" onclick="toggleLike(this, 'like-new-${Date.now()}', 0)">
+                        <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-heart text-xl text-white"></i>
+                        </div>
+                        <span id="like-new-${Date.now()}" class="text-[11px] mt-1 font-bold">0</span>
+                    </button>
+                    <button class="flex flex-col items-center text-white group" onclick="openComments('@bhim_shankar', 0)">
+                        <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-comment-dots text-xl text-white"></i>
+                        </div>
+                        <span class="text-[11px] mt-1 font-bold">0</span>
+                    </button>
+                    <button class="flex flex-col items-center text-amber-300 group" onclick="openGiftSheet('@bhim_shankar')">
+                        <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500/30 via-orange-500/25 to-rose-500/30 backdrop-blur-md flex items-center justify-center border border-amber-400/50 group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-gift text-xl text-amber-300"></i>
+                        </div>
+                        <span class="text-[11px] mt-1 font-bold text-amber-300">Gift</span>
+                    </button>
+                    <button class="flex flex-col items-center text-white group" onclick="shareReel('@bhim_shankar')">
+                        <div class="w-11 h-11 rounded-full bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-share text-lg text-white"></i>
+                        </div>
+                        <span class="text-[11px] mt-1 font-bold">Share</span>
+                    </button>
+                </div>
+            `;
+            feed.prepend(newReel);
+            closeUploadModal();
+            feed.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast('Reel published with location! 🚀');
+        }
+
+        // Scroll listener for video autoplay on active snap item
+        const feed = document.getElementById('feed');
+        feed.addEventListener('scroll', () => {
+            const reels = feed.querySelectorAll('.reel-container');
+            const scrollPos = feed.scrollTop;
+            const height = feed.clientHeight;
+            reels.exports = reels.forEach(reel => {
+                const video = reel.querySelector('video');
+                const offset = reel.offsetTop;
+                if (Math.abs(offset - scrollPos) < height / 2) {
+                    if (video && video.paused) video.play().catch(() => {});
+                } else {
+                    if (video && !video.paused) video.pause();
+                }
+            });
+        });
+
+        // Initialize state on page load
+        updateBalanceUI();
+        calculateAllDistances();
+    </script>
+</body>
+</html>
